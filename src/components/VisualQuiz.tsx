@@ -13,7 +13,11 @@ interface QuizQuestion {
   }[];
 }
 
-export default function VisualQuiz() {
+interface VisualQuizProps {
+  onResultChange?: (result: string) => void;
+}
+
+export default function VisualQuiz({ onResultChange }: VisualQuizProps) {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [answers, setAnswers] = useState<('colerico' | 'sanguineo' | 'melancolico' | 'fleumatico')[]>([]);
   const [showResult, setShowResult] = useState<boolean>(false);
@@ -209,6 +213,7 @@ export default function VisualQuiz() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowResult(true);
+      if (onResultChange) onResultChange(type);
     }
   };
 

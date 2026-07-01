@@ -13,7 +13,11 @@ interface ShapeItem {
   rotation: number;
 }
 
-export default function VisualSandbox() {
+interface VisualSandboxProps {
+  onCompositionChange?: (desc: string) => void;
+}
+
+export default function VisualSandbox({ onCompositionChange }: VisualSandboxProps) {
   const [shapes, setShapes] = useState<ShapeItem[]>([
     { id: '1', type: 'vertical', color: 'red', x: 80, y: 50, width: 24, height: 180, rotation: 0 },
     { id: '2', type: 'horizontal', color: 'green', x: 50, y: 240, width: 260, height: 20, rotation: 0 },
